@@ -1,0 +1,321 @@
+% !TeX program = xelatex
+% Лабораторная работа по дисциплине «Логические основы интеллектуальных систем».
+% Компиляция: XeLaTeX (два запуска при необходимости).
+% Блок-схемы подключаются исключительно как PNG из figures/.
+\documentclass[14pt,a4paper]{extarticle}
+
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont{DejaVu Sans Mono}[Scale=0.83]
+\usepackage[main=russian,english]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=30mm,right=15mm,top=20mm,bottom=20mm}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{fvextra}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\hypersetup{hidelinks,unicode=true,pdftitle={Отчёт по лабораторной работе №1 — ЛОИС}}
+
+\onehalfspacing
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\setlist{nosep,leftmargin=1.2cm}
+\captionsetup[figure]{name=Рис.,labelsep=space,justification=centering,font=normalsize}
+\renewcommand{\figurename}{Рис.}
+\sloppy
+
+\newcommand{\studentgroup}{421702}
+\newcommand{\studentone}{Сайковский А.~В.}
+\newcommand{\teachername}{В.~П.~Ивашенко}
+
+\newcommand{\reportheading}[1]{\par\vspace{0.8\baselineskip}\noindent\textbf{#1}\par\nobreak\vspace{0.35\baselineskip}\nobreak}
+\newcommand{\schema}[4]{%
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=#2\textwidth,height=#3\textheight,keepaspectratio]{#1}
+  \caption{Блок-схема функции \texttt{#4}}
+  \end{figure}
+}
+\DefineVerbatimEnvironment{CodeSample}{Verbatim}{%
+  fontsize=\small,breaklines=true,breakanywhere=true,frame=single,
+  framesep=2mm,commandchars=\\\{\}}
+
+\begin{document}
+\selectlanguage{russian}
+
+% ============================================================
+% ТИТУЛЬНЫЙ ЛИСТ — как в предоставленном образце.
+% ============================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+Министерство образования Республики Беларусь\\[2mm]
+Учреждение образования\\
+БЕЛОРУССКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ\\
+ИНФОРМАТИКИ И РАДИОЭЛЕКТРОНИКИ
+\end{center}
+\vspace{2.8cm}
+\noindent Факультет информационных технологий и управления\\
+\noindent Кафедра интеллектуальных информационных технологий
+\vfill
+\begin{center}
+ОТЧЁТ\\[2mm]
+по лабораторной работе №~1\\
+по дисциплине\\[2mm]
+ЛОГИЧЕСКИЕ ОСНОВЫ ИНТЕЛЛЕКТУАЛЬНЫХ\\
+СИСТЕМ
+\end{center}
+\vfill
+\noindent
+\begin{minipage}[t]{0.57\textwidth}
+Студент гр. \studentgroup:\\[3mm]
+\studentone
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+\raggedleft
+Проверил:\\[3mm]
+\teachername
+\end{minipage}
+\vfill
+\begin{center}
+Минск \the\year
+\end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\begin{center}
+\textbf{ХОД ВЫПОЛНЕНИЯ ЛАБОРАТОРНОЙ РАБОТЫ}
+\end{center}
+\begin{center}
+Вариант 1
+\end{center}
+
+\noindent Тема: Программирование операций обработки и преобразования формул прикладных и неклассических логик.
+
+\noindent Цель: Приобрести навыки программирования алгоритмов обработки данных в неклассических логических моделях решения задач.
+
+\noindent Задание: Реализовать прямой нечёткий логический вывод с использованием треугольной нормы $\min$ и нечёткой импликации Гёделя.
+
+\reportheading{Описание работы}
+Разработана программа на языке Python, выполняющая прямой нечёткий логический вывод по фактам и правилам из текстового файла. Факты задаются конечными нечёткими множествами, а правила имеют форму \texttt{A(x) \textasciitilde > B(y)} (в файле фактически используется слитная запись \texttt{\textasciitilde>}). Для каждого применимого правила строится нечёткое бинарное отношение по импликации Гёделя, после чего вычисляется max-min композиция с входным фактом. Новые факты добавляются в базу до прекращения её расширения.
+
+При реализации использованы стандартные средства Python, модуль \texttt{re}, списки, кортежи, множества и словари. Программа выполняет проверку степеней принадлежности на диапазон $[0,1]$ и запрещает повторение элементов в одном нечётком множестве. Сравнение нечётких множеств не зависит от порядка записи пар.
+
+\reportheading{Теоретические сведения}
+Нечёткое множество $A$ на универсуме $X$ определяется функцией принадлежности $\mu_A:X\to[0,1]$. Значение $\mu_A(x)$ задаёт степень принадлежности элемента $x$ множеству $A$. Для конечного универсума множество записывается в виде
+\begin{equation}
+ A=\{\langle x_1,\mu_A(x_1)\rangle,\ldots,\langle x_n,\mu_A(x_n)\rangle\}.
+\end{equation}
+
+Нечёткий предикат --- предикат, истинностное значение которого принадлежит интервалу $[0,1]$. Нормальным называется нечёткое множество высоты $h(A)=1$, где $h(A)=\sup_x\mu_A(x)$. Если $h(A)<1$, множество является субнормальным.
+
+Треугольная норма (t-норма) --- бинарная операция на $[0,1]$, обобщающая конъюнкцию. В данной работе используется
+\begin{equation}
+ T(a,b)=\min(a,b).
+\end{equation}
+
+Импликация Гёделя задаётся выражением
+\begin{equation}
+ I_G(a,b)=
+ \begin{cases}
+  1, & a\leq b,\\
+  b, & a>b.
+ \end{cases}
+ \label{eq:godel}
+\end{equation}
+
+Нечёткое бинарное отношение, соответствующее правилу $A(x)\to B(y)$, определяется на $X\times Y$ следующим образом:
+\begin{equation}
+ R(x,y)=I_G\bigl(\mu_A(x),\mu_B(y)\bigr).
+ \label{eq:relation}
+\end{equation}
+
+Обобщённый modus ponens позволяет по входному факту $A'(x)$ и правилу $A(x)\to B(y)$ получить новое заключение $B'(y)$. Используется sup-min композиция, которая на конечном универсуме принимает вид
+\begin{equation}
+ \boxed{\mu_{B'}(y)=\max_{x\in X}\min\bigl(\mu_{A'}(x),R(x,y)\bigr).}
+ \label{eq:composition}
+\end{equation}
+
+Прямой нечёткий вывод --- последовательное получение новых фактов из уже имеющихся фактов и нечётких правил. Результат каждого шага может использоваться в последующих шагах. Обход правил повторяется, пока количество различных фактов в базе не перестанет увеличиваться.
+
+\clearpage
+\reportheading{Формат базы знаний}
+Входные данные располагаются в текстовом файле \texttt{input.txt}. Определения нечётких множеств задаются именем и списком пар \texttt{<элемент, степень>}; ниже записываются правила со знаком \texttt{\textasciitilde>}. Допускаются пустые строки. Следующая упрощённая грамматика описывает основные конструкции формата:
+
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+<база знаний> ::= <список фактов> <список правил>
+<список фактов> ::= <факт> | <факт> <список фактов>
+<список правил> ::= <правило> | <правило> <список правил>
+<факт> ::= <имя> = { <список пар> }
+<список пар> ::= <пара> | <пара>, <список пар>
+<пара> ::= < <элемент>, <степень> >
+<правило> ::= <имя>(<переменная>) ~> <имя>(<переменная>)
+<степень> ::= действительное число от 0 до 1
+<имя> ::= идентификатор
+\end{Verbatim}
+
+Пример входных данных:
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+A = {<x1, 0.0>, <x2, 0.3>, <x3, 1.0>, <x4, 0.5>}
+B = {<y1, 0.4>, <y2, 0.0>, <y3, 0.3>, <y4, 1.0>}
+C = {<x1, 0.7>, <x2, 1.0>, <x3, 0.0>, <x4, 0.2>}
+
+A(x) ~> B(y)
+C(x) ~> A(y)
+B(x) ~> C(y)
+\end{Verbatim}
+
+\reportheading{Структуры данных и функции программы}
+Словарь \texttt{facts} сопоставляет имени нечёткого множества список пар \texttt{(element, degree)}. Список \texttt{rules} хранит пары имён посылки и заключения. Бинарное нечёткое отношение представляется списком троек \texttt{(x, y, implication\_degree)}.
+
+\begin{itemize}
+\item \texttt{read\_knowledge\_base(filename)} --- считывает факты и правила, выполняет синтаксический разбор и проверяет корректность степеней принадлежности;
+\item \texttt{build\_godel\_relation(antecedent, consequent)} --- строит отношение по формуле~\eqref{eq:godel};
+\item \texttt{max\_min\_composition(observation, relation)} --- вычисляет заключение по формуле~\eqref{eq:composition};
+\item \texttt{apply\_fuzzy\_rule(...)} --- выполняет один шаг нечёткого вывода;
+\item \texttt{find\_compatible\_facts(...)} --- находит факты, имеющие тот же набор элементов, что и посылка;
+\item \texttt{fuzzy\_sets\_equal(...)} --- сравнивает два множества независимо от порядка пар;
+\item \texttt{contains\_fuzzy\_set(...)} --- проверяет наличие уже полученного множества;
+\item \texttt{format\_fuzzy\_set(...)} --- создаёт текстовую запись множества для вывода;
+\item \texttt{forward\_fuzzy\_inference(...)} --- организует полный прямой вывод до отсутствия новых фактов;
+\item \texttt{main()} --- запускает считывание и выводит результаты.
+\end{itemize}
+
+\clearpage
+\reportheading{Схемы алгоритмов программы}
+Блок-схемы соответствуют функциям обновлённой реализации. Для оформления использованы изображения из архива исходных схем; вызовы функций, имеющих собственные схемы, показаны отдельными действиями. Вспомогательные операции считывания базы и строкового форматирования описаны текстом, так как отдельные изображения их схем в предоставленном архиве отсутствуют.
+
+\schema{01_main.png}{0.65}{0.53}{main()}
+\schema{apply_fuzy_rule.drawio.png}{0.60}{0.40}{apply\_fuzzy\_rule()}
+
+\clearpage
+\schema{build_godel_relation.png}{0.92}{0.79}{build\_godel\_relation()}
+
+\clearpage
+\schema{max_min_composition.drawio.png}{0.94}{0.78}{max\_min\_composition()}
+
+\clearpage
+\schema{find_compatible_facts.drawio.png}{0.89}{0.76}{find\_compatible\_facts()}
+
+\clearpage
+\schema{fuzzy_sets_equal.drawio.png}{0.86}{0.37}{fuzzy\_sets\_equal()}
+\schema{contains_fuzzy_set.drawio.png}{0.86}{0.39}{contains\_fuzzy\_set()}
+
+\clearpage
+\schema{forward_fuzzy_inference.drawio.png}{0.96}{0.80}{forward\_fuzzy\_inference()}
+
+\clearpage
+\reportheading{Демонстрация результатов работы программы}
+
+\noindent Пример 1. Применение правила к совпадающей посылке.\\
+Вводятся два нечётких множества $A$ и $B$ и правило $A(x)\to B(y)$.
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+A = {<x1, 0.0>, <x2, 0.3>, <x3, 1.0>, <x4, 0.5>}
+B = {<y1, 0.4>, <y2, 0.0>, <y3, 0.3>, <y4, 1.0>}
+A(x) ~> B(y)
+\end{Verbatim}
+
+Результат программы:
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+{A, A(x)~>B(y)} |~ _1 = {<y1, 0.4>,<y2, 0.0>,<y3, 0.3>,<y4, 1.0>}
+\end{Verbatim}
+
+В данном случае $A'=A$, поэтому получено $B'=B$. Например, степень принадлежности первого элемента заключения равна
+\begin{align*}
+\mu_{B'}(y_1)&=\max\{\min(0,1),\min(0.3,1),\\
+ &\hspace{1.2cm}\min(1,0.4),\min(0.5,0.4)\}=0.4.
+\end{align*}
+
+\noindent Пример 2. Использование другого совместимого факта.\\
+Кроме $A$ и $B$ задаётся $C$, определённое на том же универсуме, что и $A$.
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+A = {<x1, 0.0>, <x2, 0.3>, <x3, 1.0>, <x4, 0.5>}
+B = {<y1, 0.4>, <y2, 0.0>, <y3, 0.3>, <y4, 1.0>}
+C = {<x1, 0.7>, <x2, 1.0>, <x3, 0.0>, <x4, 0.2>}
+A(x) ~> B(y)
+\end{Verbatim}
+
+Результат:
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+{A, A(x)~>B(y)} |~ _1 = {<y1, 0.4>,<y2, 0.0>,<y3, 0.3>,<y4, 1.0>}
+{C, A(x)~>B(y)} |~ _2 = {<y1, 1.0>,<y2, 0.7>,<y3, 1.0>,<y4, 1.0>}
+\end{Verbatim}
+
+Множество $C$ используется в качестве входного наблюдения $A'$; само правило $A\to B$ при этом не меняется.
+
+\noindent Пример 3. Дополнительная независимая группа фактов.\\
+Добавляются множества $D$, $E$, $F$ и правило $D(z)\to E(w)$.
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+D = {<z1, 0.2>, <z2, 0.8>, <z3, 1.0>}
+E = {<w1, 0.6>, <w2, 1.0>}
+F = {<z1, 1.0>, <z2, 0.4>, <z3, 0.1>}
+D(z) ~> E(w)
+\end{Verbatim}
+
+Результат:
+\begin{Verbatim}[fontsize=\small,frame=single,breaklines=true]
+{D, D(x)~>E(y)} |~ _1 = {<w1, 0.6>,<w2, 1.0>}
+{F, D(x)~>E(y)} |~ _2 = {<w1, 1.0>,<w2, 1.0>}
+\end{Verbatim}
+
+Внутреннее представление правил сохраняет только имена множеств, поэтому в строках результата используются обозначения \texttt{(x)} и \texttt{(y)}, даже если во входном правиле записаны \texttt{(z)} и \texttt{(w)}. Это соответствует формату вывода текущей программы.
+
+\noindent Проверка корректности входных данных.\\
+Если во входном файле указано значение принадлежности вне допустимого диапазона, например \texttt{1.3}, функция \texttt{read\_knowledge\_base()} выдаёт исключение \texttt{ValueError}. При повторном объявлении одного и того же элемента внутри нечёткого множества также выдаётся ошибка. Это предотвращает выполнение вывода по некорректным фактам.
+
+\clearpage
+\reportheading{Ответы на контрольные вопросы}
+\noindent 1. При каких $A'(x)$ можно получить субнормальное множество $B'(y)$, если посылка и заключение правила нормальные?
+
+При нормальном $B$ существует $y$ с $\mu_B(y)=1$, а потому $I_G(A(x),B(y))=1$ для всех $x$. Из max-min композиции следует $h(B')=h(A')$. Следовательно, $B'$ субнормально тогда и только тогда, когда $A'$ субнормально.
+
+\medskip
+\noindent 2. При каких $A'(x)$ можно получить нормальное $B'(y)$, если посылка и заключение правила субнормальные?
+
+Необходимо и достаточно существования таких $x$ и $y$, что $\mu_{A'}(x)=1$ и $\mu_A(x)\leq\mu_B(y)$. Тогда $I_G(A(x),B(y))=1$ и $\mu_{B'}(y)=1$.
+
+\medskip
+\noindent 3. Можно ли получить $B'(y)=B(y)$, если посылка и заключение нормальные?
+
+Да. При $A'=A$ и нормальном $A$ всегда получается $B'=B$. Однако совпадение $A'=A$ является достаточным, но не необходимым условием: другие наблюдения также могут дать то же заключение.
+
+\medskip
+\noindent 4. Можно ли получить $B'(y)=B(y)$, если посылка и заключение субнормальные?
+
+Да. Например, при $A'=A$ выполняется равенство $\mu_{B'}(y)=\min\bigl(\mu_B(y),h(A)\bigr)$. Поэтому если $h(A)\geq h(B)$, результат совпадает с $B$.
+
+\medskip
+\noindent 5. Можно ли получить $B'(y)=B(y)$, если посылка нормальная, а заключение субнормальное?
+
+Да. При $A'=A$ имеем $h(A)=1$, поэтому $\mu_{B'}(y)=\min(\mu_B(y),1)=\mu_B(y)$ для всех $y$.
+
+\medskip
+\noindent 6. Можно ли получить $B'(y)=B(y)$, если посылка субнормальная, а заключение нормальное?
+
+При $A'=A$ --- нельзя, так как тогда $h(B')\leq h(A)<1$, а $h(B)=1$. Однако при произвольном $A'\ne A$ равенство возможно: верхняя граница результата определяется также входным наблюдением $A'$. Например, для $A=(0.2,0.4)$, $B=(1,0.3)$ и $A'=(0,1)$ композиция по импликации Гёделя даёт $B'=B$.
+
+\reportheading{Личный вклад}
+\studentone: реализация max-min композиции и механизма прямого нечёткого вывода.
+
+\reportheading{ВЫВОД}
+В ходе выполнения лабораторной работы разработана программа прямого нечёткого логического вывода на основе импликации Гёделя и t-нормы минимума. Реализованы построение нечёткого бинарного отношения, max-min композиция и последовательное применение правил к совместимым фактам. Предусмотрены проверка допустимости степеней принадлежности и сравнение нечётких множеств независимо от порядка элементов. На нескольких наборах входных данных получены результаты, соответствующие вычислительной схеме обобщённого modus ponens. Построены блок-схемы основных алгоритмов программы.
+
+\reportheading{Использованные источники}
+\begin{enumerate}
+\item Логические основы интеллектуальных систем. Практикум: учебно-методическое пособие / В.~В.~Голенков, В.~П.~Ивашенко, Д.~Г.~Колб, К.~А.~Уваров. --- Минск: БГУИР, 2011.
+\item Документация Python: модуль \texttt{re} (регулярные выражения), \url{https://docs.python.org/3/library/re.html}.
+\item Исходный код лабораторной работы: \texttt{lab1\_refactored.py}; входная база знаний: \texttt{input.txt}.
+\end{enumerate}
+
+\end{document}
