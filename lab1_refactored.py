@@ -16,9 +16,17 @@ import re
 from pathlib import Path
 
 
-FACT_PATTERN = re.compile(r"(\w+)\s*=\s*\{([^}]+)\}")
+NAME_PATTERN = r"[A-Za-z][A-Za-z0-9]?"
+FACT_PATTERN = re.compile(
+    rf"^[ \t]*({NAME_PATTERN})[ \t]*=[ \t]*\{{([^}}\r\n]+)\}}[ \t]*\r?$",
+    re.MULTILINE,
+)
 PAIR_PATTERN = re.compile(r"<([^,>]+),\s*([\d.]+)>")
-RULE_PATTERN = re.compile(r"(\w+)\(?[^)]*\)?\s*~>\s*(\w+)\(?[^)]*\)?")
+RULE_PATTERN = re.compile(
+    rf"^[ \t]*({NAME_PATTERN})(?:\([^()\r\n]*\))?[ \t]*~>[ \t]*"
+    rf"({NAME_PATTERN})(?:\([^()\r\n]*\))?[ \t]*\r?$",
+    re.MULTILINE,
+)
 
 
 def build_godel_relation(antecedent, consequent):
@@ -121,7 +129,7 @@ def read_knowledge_base(filename):
 
 
 def main():
-    facts, rules = read_knowledge_base(Path(__file__).with_name("input.txt"))
+    facts, rules = read_knowledge_base(Path(__file__).with_name("input_original.txt"))
     print(forward_fuzzy_inference(rules, facts))
 
 
