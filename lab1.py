@@ -8,9 +8,9 @@
 #   Группа: 421702
 #
 #   Используемые источники:
-#   1.https://libeldoc.bsuir.by/bitstream/123456789/992/2/Log_Osn.pdf
-#   2.Липский Р.В. https://github.com/rastsislaux,
-#   3.https://habr.com/ru/articles/111187("Прямой нечеткий логический вывод")
+#    1.https://libeldoc.bsuir.by/bitstream/123456789/992/2/Log_Osn.pdf
+#    2.https://habr.com/ru/articles/111187 ("Прямой нечеткий логический вывод")
+#    3. Давыдов Р.Д. - Лабораторная работа №1 по ЛОИС
 
 import re
 from pathlib import Path
