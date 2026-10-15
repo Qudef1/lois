@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.8)  14 OCT 2026 20:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.8)  15 OCT 2026 11:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -631,8 +631,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip73
 )
 Package hyperref Info: Option `unicode' set `true' on input line 27.
-
-No file report.aux.
+ (report.aux
+Package babel Info: 'russian' activates 'russian' shorthands.
+(babel)             Reported on input line 9.
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
@@ -723,9 +725,8 @@ e 53.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/DejaVuSansMono(0)/b/n on input line
  53.
-Package babel Info: 'russian' activates 'russian' shorthands.
-(babel)             Reported on input line 53.
 LaTeX Info: Redefining \th on input line 53.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -780,18 +781,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Package hyperref Info: Link coloring OFF on input line 53.
+(report.out) (report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-[1
+ [1
 
 ]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 108
 .
- (C:\Users\wkto9\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+
+(C:\Users\wkto9\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 (C:\Users\wkto9\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
@@ -839,45 +839,39 @@ ed.py\TU/LiberationSerif(0)/m/n/14.4 . Каждое определение не�
 
 LaTeX Font Info:    Font shape `TU/DejaVuSansMono(0)/m/n' will be
 (Font)              scaled to size 9.96002pt on input line 156.
+LaTeX Font Info:    Font shape `TU/DejaVuSansMono(0)/m/n' will be
+(Font)              scaled to size 4.98001pt on input line 161.
 [4
 
-]
-
-LaTeX Warning: Reference `eq:godel' on page 5 undefined on input line 190.
-
-
-LaTeX Warning: Reference `eq:composition' on page 5 undefined on input line 191
-.
-
-[5]
+] [5] [6]
 File: figures/01_main.png Graphic file (type bmp)
 <figures/01_main.png>
 File: figures/apply_fuzy_rule.drawio.png Graphic file (type bmp)
 <figures/apply_fuzy_rule.drawio.png>
- [6
+ [7
 
 ]
 File: figures/build_godel_relation.png Graphic file (type bmp)
 <figures/build_godel_relation.png>
- [7
+ [8
 
 ]
 File: figures/max_min_composition.drawio.png Graphic file (type bmp)
 <figures/max_min_composition.drawio.png>
- [8
+ [9
 
 ]
 File: figures/find_compatible_facts.drawio.png Graphic file (type bmp)
 <figures/find_compatible_facts.drawio.png>
- [9
+ [10
 
 ]
 File: figures/forward_fuzzy_inference.drawio.png Graphic file (type bmp)
 <figures/forward_fuzzy_inference.drawio.png>
- [10
+ [11
 
 ]
-Underfull \hbox (badness 5726) in paragraph at lines 244--246
+Underfull \hbox (badness 5726) in paragraph at lines 270--272
 \TU/LiberationSerif(0)/m/n/14.4 С наблюдением $\OML/cmm/m/it/14.4 C$ \TU/Libera
 tionSerif(0)/m/n/14.4 правило $\OML/cmm/m/it/14.4 A\OT1/cmr/m/n/14.4 (\OML/cmm/
 m/it/14.4 x\OT1/cmr/m/n/14.4 ) \OMS/cmsy/m/n/14.4 ! \OML/cmm/m/it/14.4 B\OT1/cm
@@ -886,66 +880,29 @@ r/m/n/14.4 (\OML/cmm/m/it/14.4 y\OT1/cmr/m/n/14.4 )$ \TU/LiberationSerif(0)/m/n
  степенями
  []
 
-[11
-
-]
-Underfull \hbox (badness 7433) in paragraph at lines 253--254
-[]\TU/LiberationSerif(0)/m/n/14.4 При нормальном $\OML/cmm/m/it/14.4 B$ \TU/Lib
-erationSerif(0)/m/n/14.4 существует $\OML/cmm/m/it/14.4 y$ \TU/LiberationSerif(
-0)/m/n/14.4 с $\OML/cmm/m/it/14.4 ^^V[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 y\
-OT1/cmr/m/n/14.4 ) = 1$\TU/LiberationSerif(0)/m/n/14.4 , а потому
- []
-
-
-Underfull \hbox (badness 2671) in paragraph at lines 268--269
-[]\TU/LiberationSerif(0)/m/n/14.4 Да. Например, при $\OML/cmm/m/it/14.4 A[] \OT
-1/cmr/m/n/14.4 = \OML/cmm/m/it/14.4 A$ \TU/LiberationSerif(0)/m/n/14.4 выполняе
-тся равенство $\OML/cmm/m/it/14.4 ^^V[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 y\
-OT1/cmr/m/n/14.4 ) =
- []
-
 [12
 
-]
-Underfull \hbox (badness 1708) in paragraph at lines 284--285
-\TU/LiberationSerif(0)/m/n/14.4 мого нечёткого логического вывода на основе имп
-ликации Гёделя и t-
- []
+] [13
 
+] [14] [15] [16] [17] [18
 
-Underfull \hbox (badness 1789) in paragraph at lines 288--289
-[]\TU/LiberationSerif(0)/m/n/14.4 Логические основы интеллектуальных систем. Пр
-актикум: учебно-
- []
+] [19
 
-[13] (report.aux)
+] (report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18849 strings out of 402987
- 361475 string characters out of 5448525
- 857422 words of memory out of 5000000
- 47332 multiletter control sequences out of 15000+600000
- 630992 words of font info for 91 fonts, out of 8000000 for 9000
+ 18907 strings out of 402987
+ 362752 string characters out of 5448525
+ 859422 words of memory out of 5000000
+ 47376 multiletter control sequences out of 15000+600000
+ 633218 words of font info for 103 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,9n,93p,1011b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,12n,93p,1011b,723s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on report.pdf (13 pages).
+Output written on report.pdf (19 pages).

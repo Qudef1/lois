@@ -129,7 +129,7 @@ def read_knowledge_base(filename):
 
 
 def main():
-    facts, rules = read_knowledge_base(Path(__file__).with_name("input_original.txt"))
+    facts, rules = read_knowledge_base(Path(__file__).with_name("input.txt"))
     print(forward_fuzzy_inference(rules, facts))
 
 
