@@ -8,9 +8,9 @@
 #   Группа: 421702
 #
 #   Используемые источники:
-#   1.https://libeldoc.bsuir.by/bitstream/123456789/992/2/Log_Osn.pdf
-#   2.https://habr.com/ru/articles/111187 ("Прямой нечеткий логический вывод")
-#   3. Давыдов Р.Д. - Лабораторная работа №1 по ЛОИС
+#    1.https://libeldoc.bsuir.by/bitstream/123456789/992/2/Log_Osn.pdf
+#    2.https://habr.com/ru/articles/111187 ("Прямой нечеткий логический вывод")
+#    3. Давыдов Р.Д. - Лабораторная работа №1 по ЛОИС
 
 import re
 from pathlib import Path
@@ -21,7 +21,7 @@ FACT_PATTERN = re.compile(
     rf"^[ \t]*({NAME_PATTERN})[ \t]*=[ \t]*\{{([^}}\r\n]+)\}}[ \t]*\r?$",
     re.MULTILINE,
 )
-PAIR_PATTERN = re.compile(r"<([^,>]+),\s*([\d.]+)>")
+PAIR_PATTERN = re.compile(r"<([^,>]+),\s*((?:0|1(?:\.0+)?|0?\.\d+))>")
 RULE_PATTERN = re.compile(
     rf"^[ \t]*({NAME_PATTERN})(?:\([^()\r\n]*\))?[ \t]*~>[ \t]*"
     rf"({NAME_PATTERN})(?:\([^()\r\n]*\))?[ \t]*\r?$",
@@ -119,7 +119,13 @@ def read_knowledge_base(filename):
 
     for match in FACT_PATTERN.finditer(content):
         fact_name = match.group(1)
-        elements = PAIR_PATTERN.findall(match.group(2))
+        body = match.group(2)
+        elements = PAIR_PATTERN.findall(body)
+        if body.count("<") != len(elements):
+            raise ValueError(
+                f"Степени принадлежности в факте {fact_name} "
+                f"должны быть в диапазоне [0.0, 1.0]: {match.group(0).strip()}"
+            )
         facts[fact_name] = [(item.strip(), float(degree)) for item, degree in elements]
 
     for match in RULE_PATTERN.finditer(content):
