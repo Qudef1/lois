@@ -1,0 +1,190 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="10_forward_fuzzy_inference" name="forward_fuzzy_inference()">
+    <mxGraphModel dx="1776" dy="1134" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1110" pageHeight="1520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="init" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="derivation_lines = []&lt;br&gt;already_reported = []" vertex="1">
+          <mxGeometry height="60" width="300" x="264" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="before" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="facts_before_pass = len(facts)" vertex="1">
+          <mxGeometry height="48" width="300" x="264" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="rules" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="for antecedent_name, consequent_name&lt;br&gt;in rules" vertex="1">
+          <mxGeometry height="86" width="302" x="263" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="get" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="antecedent = facts[antecedent_name]&lt;br&gt;consequent = facts[consequent_name]" vertex="1">
+          <mxGeometry height="59" width="300" x="190" y="413" as="geometry" />
+        </mxCell>
+        <mxCell id="suitable" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="suitable_observations =&lt;br&gt;find_compatible_facts(antecedent, facts)" vertex="1">
+          <mxGeometry height="52" width="304" x="190" y="513" as="geometry" />
+        </mxCell>
+        <mxCell id="obs" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="for observed_name, observation&lt;br&gt;in suitable_observations.items()" vertex="1">
+          <mxGeometry height="88" width="308" x="188" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="derived" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="derived_fact = apply_fuzzy_rule(&lt;br&gt;antecedent, consequent, observation)" vertex="1">
+          <mxGeometry height="56" width="306" x="530" y="656" as="geometry" />
+        </mxCell>
+        <mxCell id="name" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="derived_name = f&quot;_{len(derivation_lines) + 1}&quot;" vertex="1">
+          <mxGeometry height="48" width="296" x="535" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="line" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="line = (&lt;br&gt;    f&quot;{{{observed_name}, {antecedent_name}(x)~&gt;{consequent_name}(y)}} &quot;&lt;br&gt;    f&quot;|~ {derived_name} = {format_fuzzy_set(derived_fact)}&quot;&lt;br&gt;)" vertex="1">
+          <mxGeometry height="95" width="625" x="370.5" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="known" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="contains_fuzzy_set(&lt;br&gt;derived_fact, facts.values())" vertex="1">
+          <mxGeometry height="86" width="272" x="547" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="report" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="not contains_fuzzy_set(&lt;br&gt;derived_fact, already_reported)" vertex="1">
+          <mxGeometry height="84" width="290" x="210" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="reported" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="derivation_lines.append(line)&lt;br&gt;already_reported.append(derived_fact)" vertex="1">
+          <mxGeometry height="57" width="270" x="410" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="ClLdfxPnh2SsElmaDeQp-2" edge="1" parent="1" source="new" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;">
+          <mxGeometry relative="1" x="0.106" as="geometry">
+            <Array as="points">
+              <mxPoint x="872" y="1220" />
+            </Array>
+            <mxPoint x="545" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="new" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="derivation_lines.append(line)&lt;br&gt;facts[derived_name] = derived_fact&lt;br&gt;already_reported.append(derived_fact)" vertex="1">
+          <mxGeometry height="79" width="304" x="720" y="1119" as="geometry" />
+        </mxCell>
+        <mxCell id="pass" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="len(facts) == facts_before_pass" vertex="1">
+          <mxGeometry height="76" width="270" x="610" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="ddv9nkKTcbo935WWXy08-2" edge="1" parent="1" source="ret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ddv9nkKTcbo935WWXy08-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ret" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="return &quot;\n&quot;.join(derivation_lines)" vertex="1">
+          <mxGeometry height="54" width="248" x="530" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="ddv9nkKTcbo935WWXy08-3" edge="1" parent="1" source="reported" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" x="-0.138" as="geometry">
+            <Array as="points">
+              <mxPoint x="545" y="1270" />
+              <mxPoint x="1050" y="1270" />
+              <mxPoint x="1050" y="610" />
+            </Array>
+            <mxPoint x="550" y="1190" as="sourcePoint" />
+            <mxPoint x="342" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="init" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="before" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="before" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="rules" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="get" value="Да">
+          <mxGeometry relative="1" x="-0.9216" y="-18" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="220" y="328" />
+              <mxPoint x="220" y="390" />
+              <mxPoint x="340" y="390" />
+            </Array>
+            <mxPoint x="270" y="328.0000000000001" as="sourcePoint" />
+            <mxPoint x="421" y="413" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="rules" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="pass" value="Нет">
+          <mxGeometry relative="1" x="-0.9505" y="18" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="pass" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ret" value="Да">
+          <mxGeometry relative="1" x="-1" y="-18" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="580" y="388" />
+              <mxPoint x="580" y="480" />
+              <mxPoint x="654" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="pass" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="before" value="Нет">
+          <mxGeometry relative="1" x="-1" y="18" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="930" y="388" />
+              <mxPoint x="930" y="222" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="get" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="suitable" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="suitable" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="obs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="obs" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="Нет">
+          <mxGeometry relative="1" x="-1" y="-14" as="geometry">
+            <mxPoint x="2" as="offset" />
+            <Array as="points">
+              <mxPoint x="141" y="684" />
+              <mxPoint x="141" y="260" />
+            </Array>
+            <mxPoint x="414" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="obs" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="derived" value="Да">
+          <mxGeometry relative="1" x="-0.6316" y="14" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="derived" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="name" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="name" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="line" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="line" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="known" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="known" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="report" value="Да">
+          <mxGeometry relative="1" x="-0.9426" y="-13" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="known" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="new" value="Нет">
+          <mxGeometry relative="1" x="-0.9141" y="13" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="1001" y="1145.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="report" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="reported" value="Да">
+          <mxGeometry relative="1" x="-0.7849" y="12" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="report" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="Нет">
+          <mxGeometry relative="1" x="-0.9581" y="-12" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="180" y="1072" />
+              <mxPoint x="180" y="1240" />
+            </Array>
+            <mxPoint x="545" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ddv9nkKTcbo935WWXy08-1" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="Конец" vertex="1">
+          <mxGeometry height="60" width="100" x="850" y="509" as="geometry" />
+        </mxCell>
+        <mxCell id="ddv9nkKTcbo935WWXy08-5" edge="1" parent="1" source="ddv9nkKTcbo935WWXy08-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="init" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ddv9nkKTcbo935WWXy08-4" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="Начало" vertex="1">
+          <mxGeometry height="60" width="100" x="364" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="ClLdfxPnh2SsElmaDeQp-3" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="70" width="30" x="464" y="3" as="geometry" />
+        </mxCell>
+        <mxCell id="ClLdfxPnh2SsElmaDeQp-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;input: list rules, dict facts&lt;/div&gt;&lt;div&gt;output: str result&lt;/div&gt;" vertex="1">
+          <mxGeometry height="48" width="160" x="470" y="10" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

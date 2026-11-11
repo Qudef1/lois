@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="08_fuzzy_sets_equal" name="fuzzy_sets_equal()">
+    <mxGraphModel dx="982" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="810" pageHeight="450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="test" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=3;" value="dict(first) == dict(second)&lt;br&gt;and len(first) == len(second)" vertex="1">
+          <mxGeometry height="98" width="286" x="247" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="ogy21EC74l8mZwnKoHHs-5" edge="1" parent="1" source="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" x="-0.0078" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="350" />
+            </Array>
+            <mxPoint x="390" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="true" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="return True" vertex="1">
+          <mxGeometry height="49" width="180" x="90" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="ogy21EC74l8mZwnKoHHs-3" edge="1" parent="1" source="false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="ogy21EC74l8mZwnKoHHs-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="340" />
+              <mxPoint x="390" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="false" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontSize=12;align=center;verticalAlign=middle;spacing=5;" value="return False" vertex="1">
+          <mxGeometry height="49" width="180" x="510" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="test" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="true" value="Да">
+          <mxGeometry relative="1" x="-1" y="-12" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="180" y="162" />
+              <mxPoint x="180" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="test" style="edgeStyle=segmentEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#111111;endArrow=classic;endFill=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="false" value="Нет">
+          <mxGeometry relative="1" x="-0.9222" y="12" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="600" y="162" />
+              <mxPoint x="600" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ogy21EC74l8mZwnKoHHs-6" edge="1" parent="1" source="ogy21EC74l8mZwnKoHHs-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="test" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ogy21EC74l8mZwnKoHHs-1" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="Начало" vertex="1">
+          <mxGeometry height="60" width="100" x="340" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ogy21EC74l8mZwnKoHHs-2" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="К&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;онец&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="340" y="370" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

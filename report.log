@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.8)  29 OCT 2026 16:29
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.8)  11 NOV 2026 23:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -827,39 +827,42 @@ LaTeX Font Info:    Font shape `TU/DejaVuSansMono(0)/m/n' will be
 ] [5]
 File: figures/01_main.png Graphic file (type bmp)
 <figures/01_main.png>
+ [6]
 File: figures/apply_fuzy_rule.drawio.png Graphic file (type bmp)
 <figures/apply_fuzy_rule.drawio.png>
- [6]
+ [7
+
+]
 File: figures/build_godel_relation.png Graphic file (type bmp)
 <figures/build_godel_relation.png>
- [7
+ [8
 
 ]
 File: figures/max_min_composition.drawio.png Graphic file (type bmp)
 <figures/max_min_composition.drawio.png>
- [8
+ [9
 
 ]
 File: figures/find_compatible_facts.drawio.png Graphic file (type bmp)
 <figures/find_compatible_facts.drawio.png>
- [9
+ [10
 
 ]
 File: figures/forward_fuzzy_inference.drawio.png Graphic file (type bmp)
 <figures/forward_fuzzy_inference.drawio.png>
- [10
+ [11
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
 []\TU/LiberationSerif(0)/m/n/14.4 Программа \TU/DejaVuSansMono(0)/m/n/14.4 lab1
 .py \TU/LiberationSerif(0)/m/n/14.4 запущена с базой знаний из файла
  []
 
-[11
+[12
 
-] [12] [13
+] [13] [14
 
-] [14] [15] [16] [17
+] [15] [16] [17] [18
 
 ] (report.aux)
  ***********
@@ -878,4 +881,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  73i,10n,93p,1011b,723s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on report.pdf (17 pages).
+Output written on report.pdf (18 pages).
