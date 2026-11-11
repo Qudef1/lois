@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Лабораторная работа №4 (индивидуальная практическая работа 2), ЛОИС.
+Выполнена студентами группы 421702 БГУИР: Сайковский А. В., Мяло В. В., Вашкевич М. В.
+Редактируемая блок-схема lab4.py; версия 2.0, 12.11.2026.
+Источники: авторы lab1.py и lab4.py; образцы figures/drawio первой лабораторной. -->
+<mxfile host="app.diagrams.net" author="Сайковский А. В.; Мяло В. В.; Вашкевич М. В." version="2.0">
+  <diagram id="lab4_main" name="main() — запуск программы">
+    <mxGraphModel dx="650" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="650" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" parent="1" vertex="1" value="&lt;div&gt;Начало&lt;/div&gt;" style="shape=mxgraph.flowchart.terminator;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="230" y="20" width="140" height="50" />
+        </mxCell>
+        <mxCell id="filename" parent="1" vertex="1" value="&lt;div&gt;Выбрать filename:&lt;br&gt;аргумент запуска или lab4/input.txt&lt;/div&gt;" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="100" y="115" width="400" height="65" />
+        </mxCell>
+        <mxCell id="read" parent="1" vertex="1" value="&lt;div&gt;relation, conclusion =&lt;br&gt;read_problem(filename)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="100" y="225" width="400" height="65" />
+        </mxCell>
+        <mxCell id="solve" parent="1" vertex="1" value="&lt;div&gt;upper, minima =&lt;br&gt;inverse_fuzzy_inference(...)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="100" y="335" width="400" height="65" />
+        </mxCell>
+        <mxCell id="print" parent="1" vertex="1" value="&lt;div&gt;print(format_result(...))&lt;/div&gt;" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="100" y="445" width="400" height="60" />
+        </mxCell>
+        <mxCell id="stop" parent="1" vertex="1" value="&lt;div&gt;Конец&lt;/div&gt;" style="shape=mxgraph.flowchart.terminator;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;fontColor=#111111;fontFamily=Arial;fontSize=18;align=center;verticalAlign=middle;spacing=5;strokeWidth=1;">
+          <mxGeometry as="geometry" x="230" y="560" width="140" height="50" />
+        </mxCell>
+        <mxCell id="edge1" parent="1" edge="1" source="start" target="filename" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" parent="1" edge="1" source="filename" target="read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" parent="1" edge="1" source="read" target="solve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" parent="1" edge="1" source="solve" target="print" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" parent="1" edge="1" source="print" target="stop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#111111;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
