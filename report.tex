@@ -229,22 +229,26 @@ C(x) ~> A(y)
 \reportheading{Схемы алгоритмов программы}
 Блок-схемы из архива исходных схем иллюстрируют основные этапы алгоритма. В текущей реализации проверка наличия полученного множества выполняется в \texttt{forward\_fuzzy\_inference()} сравнением списков пар. Считывание базы и форматирование результатов описаны текстом.
 
-\schema{01_main.png}{0.48}{0.29}{main()}
+\schema{01_main.png}{0.6}{0.35}{main()}
 \clearpage
 
-\schema{apply_fuzy_rule.drawio.png}{0.50}{0.35}{apply\_fuzzy\_rule()}
+\schema{apply_fuzy_rule.drawio.png}{0.7}{0.4}{apply\_fuzzy\_rule()}
 
 \clearpage
-\schema{build_godel_relation.png}{0.92}{0.79}{build\_godel\_relation()}
+\schema{build_godel_relation.png}{0.98}{0.83}{build\_godel\_relation()}
 
 \clearpage
-\schema{max_min_composition.drawio.png}{0.94}{0.78}{max\_min\_composition()}
+\schema{max_min_composition.drawio.png}{1}{0.9}{max\_min\_composition()}
 
 \clearpage
 \schema{find_compatible_facts.drawio.png}{0.89}{0.76}{find\_compatible\_facts()}
 
 \clearpage
-\schema{forward_fuzzy_inference.drawio.png}{1}{0.9}{forward\_fuzzy\_inference()}
+\schema{forward_fuzzy_inference1.drawio.png}{1}{0.9}{forward\_fuzzy\_inference() 1}
+
+\clearpage
+\schema{forward_fuzzy_inference2.drawio.png}{1}{0.9}{forward\_fuzzy\_inference() 2}
+
 
 \clearpage
 \reportheading{Демонстрация результатов работы программы}
@@ -452,7 +456,7 @@ A(x) ~> B(y)
 {A, A(x)~>B(y)} |~ _1 = {<x1, 0.2>,<x2, 0.3>}
 \end{Verbatim}
 
-\smallskip\noindent\textbf{Ответ.} Да, можно получить $B'(y)=B(y)$, если $A'(x)=A(x)$. В примере результат $(0.2,0.3)$ полностью совпадает с исходным множеством $B$.
+\smallskip\noindent\textbf{Ответ.} Да, можно получить $B'(y)=B(y)$, если $A'(x)=A(x)$. В примере результат $(0.2,0.3)$ полностью совпадает с $B$.
 
 
 \clearpage
@@ -460,10 +464,18 @@ A(x) ~> B(y)
 
 \noindent\textbf{Постановка вопроса.} Можно ли получить $B'(y)=B(y)$, когда посылка является субнормальным нечётким множеством, а заключение --- нормальным?
 
-\smallskip\noindent\textbf{Решение.} В примере $h(A)=0.4<1$, а $h(B)=1$. При наблюдении $A'=A$ высота результата ограничена числом $0.4$, поэтому $B'\ne B$. Программа также применяет правило к совместимым фактам $B$ и $C$, поскольку все три множества заданы на $\{x_1,x_2\}$. Ни один из трёх результатов не совпадает с $B$:
+\smallskip\noindent\textbf{Решение.} Пусть входная посылка $A'$ субнормальна, то есть $h(A')<1$. Для любого $y$ при max-min композиции выполняется
 
 \[
-\begin{gathered}R=\begin{pmatrix}1&1\\1&0.3\end{pmatrix},\qquad A\circ R=(0.4,0.3),\\B\circ R=(1.0,1.0),\qquad C\circ R=(0.4,0.4).\end{gathered}
+\mu_{B'}(y)=\max_x\min\bigl(\mu_{A'}(x),R(x,y)\bigr)
+\leq\max_x\mu_{A'}(x)=h(A')<1.
+\]
+Следовательно, $h(B')<1$, тогда как $h(B)=1$. Поэтому $B'\ne B$.
+
+В примере $A'=A$, $h(A)=0.4<1$, а $h(B)=1$. Матрица отношения и результаты применения правила имеют вид
+
+\[
+R=\begin{pmatrix}1&1\\1&0.3\end{pmatrix},\qquad A\circ R=(0.4,0.3).
 \]
 
 \noindent\textbf{Пример.} Содержимое файла \texttt{input\_task6.txt}:
@@ -484,15 +496,9 @@ A(x) ~> B(y)
 {C, A(x)~>B(y)} |~ _3 = {<x1, 0.4>,<x2, 0.4>}
 \end{Verbatim}
 
-\smallskip\noindent\textbf{Ответ.} Да, при подходящем $A'\ne A$ это возможно. При $A'=A$ совпадение невозможно: $h(B')\leq h(A)<1$, а $B$ нормально. В исходном примере ни один из трёх результатов с $B$ не совпадает, но это не доказывает невозможность для любого наблюдения.\par\smallskip
-{\RaggedRight\noindent Проверка другого наблюдения сохранена в \texttt{input\_task6\_counterexample.txt}: при тех же $A$ и $B$ взято $C=A'=(0.0,1.0)$. Тогда\par}
-\[
-C\circ R=(\min(1,1),\min(1,0.3))=(1.0,0.3)=B.
-\]
-Фактическая строка вывода программы:
-\begin{Verbatim}[fontsize=\small,baselinestretch=1,frame=single,breaklines=true]
-{C, A(x)~>B(y)} |~ _3 = {<x1, 1.0>,<x2, 0.3>}
-\end{Verbatim}
+Программа дополнительно применяет правило к совместимым фактам $B$ и $C$. Строка для $B$ получена с нормальной входной посылкой, а для субнормальных $A$ и $C$ высота результата равна $0.4$.
+
+\smallskip\noindent\textbf{Ответ.} Нет. Из субнормальной входной посылки при max-min композиции можно получить только субнормальное следствие, поскольку $h(B')\leq h(A')<1$. Поэтому оно не может совпасть с нормальным $B$. В частности, при $A'=A$ в примере получается $B'=(0.4,0.3)$, тогда как $B=(1.0,0.3)$.
 
 \clearpage
 \reportheading{Личный вклад}
